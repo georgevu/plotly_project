@@ -1,0 +1,21 @@
+---
+title: "Plotly Sample"
+author: "George Vu"
+date: "April 20, 2017"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+```
+```{r plotly_plot, fig.width = 6, fig.height = 6, fig.align = 'center'}
+options(warn=-1)
+library(plotly)
+d <- ggplot2::diamonds[sample(nrow(ggplot2::diamonds), 1000), ]
+
+plot_ly(
+  d, x = ~carat, y = ~price,
+  # Hover text:
+  text = ~paste("Price: ", price, '$<br>Cut:', cut),
+  color = ~carat, size = ~carat
+)
+```
